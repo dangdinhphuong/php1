@@ -532,7 +532,7 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 					<div class="card-content">
 						<div class="progress-wrapper">
 							<p>
-								<i class="fas fa-minus"></i></i> Số lượng danh mục: <?= $count_dm['COUNT(cate_id)'] ?>
+								<i class="fas fa-minus"></i></i> Số lượng danh mục: <?= $count_dm['COUNT(cate_id)'] ?><!-- đến số lượng-->
 								<span class="float-right">100%</span>
 							</p>
 							<div class="progress">
@@ -599,20 +599,13 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 								<?php foreach ($result as $r) : ?>
 									<tr>
 
-										<td><?= $r['cate_id'] ?></td>
-										<td><?= $r['cate_name'] ?></td>
-
+										<td><?= $r['cate_id'] ?></td><!-- hiển thị cate_id -->
+										<td><?= $r['cate_name'] ?></td><!-- hiển thị tên -->
 										<td>
-											<button><a href="#add_dm" style=" text-decoration: none ; color: red; font-weight:  bold">Thêm Danh Mục</a></button>
-
-											<button><a href="edit.php?id=<?= $r['pro_id'] ?>" style=" text-decoration: none ; color: red; font-weight:  bold">Sửa</a></button>
-
-
-											<button><a onclick="return confirm('Ban có muốn xóa hay không ?')" href="del_dm.php?id=<?= $r['cate_id'] ?>" style=" text-decoration: none ; color: red; font-weight:  bold">Xóa</a></button>
-
+											<button><a href="#add_dm" style=" text-decoration: none ; color: red; font-weight:  bold">Thêm Danh Mục</a></button><!-- nút chuyển đến phần add danh mục -->
+											<button><a href="edit_dm.php?id=<?= $r['cate_id'] ?>" style=" text-decoration: none ; color: red; font-weight:  bold">Sửa</a></button><!-- sủa danh mục theo id -->
+											<button><a onclick="return confirm('Ban có muốn xóa hay không ?')" href="del_dm.php?id=<?= $r['cate_id'] ?>" style=" text-decoration: none ; color: red; font-weight:  bold">Xóa</a></button><!-- xáo danh mục theo id -->
 										</td>
-
-
 									</tr>
 
 								<?php endforeach; ?>
@@ -632,17 +625,15 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 						</h3>
 						<i class="fas fa-ellipsis-h"></i>
 					</div>
-
 					<div id="accordion">
 						<div class="card">
 							<div class="card-header" id="headingOne">
 								<h5 class="mb-0">
 									<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-										MEN <i class="fas fa-caret-down" style="color: gray; font-size:30px " ></i>
+										MEN <i class="fas fa-caret-down" style="color: gray; font-size:30px "></i>
 									</button>
 								</h5>
 							</div>
-
 							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 								<div class="card-body">
 									<div class="card-content">
@@ -657,7 +648,6 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 													<th>Price</th>
 													<th>Quantity</th>
 													<th>Intro</th>
-
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -679,7 +669,6 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 																<button><a href="edit.php?id=<?= $r['pro_id'] ?>">Sửa</a></button>
 																<br>
 																<button><a onclick="return confirm('Ban có muốn xóa hay không ?')" href="del.php?id=<?= $r['pro_id'] ?>">Xóa</a></button>
-
 															</td>
 														</tr>
 													<?php } ?>
@@ -695,7 +684,7 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 							<div class="card-header" id="headingTwo">
 								<h5 class="mb-0">
 									<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-										WOMEN<i class="fas fa-caret-down" style="color: gray; font-size:30px " ></i>
+										WOMEN<i class="fas fa-caret-down" style="color: gray; font-size:30px "></i>
 									</button>
 								</h5>
 							</div>
@@ -713,34 +702,32 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 													<th>Price</th>
 													<th>Quantity</th>
 													<th>Intro</th>
-
 													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php foreach ($result1 as $r) : ?>
+													<!--dùng vòng lặp để in ra các sản phẩm  -->
 
 													<?php if ($r['cate_id'] == 2) { ?>
+														<!--hiển thị các sản phẩm có id=3 -->
 														<tr>
-															<td><?= $r['pro_id'] ?></td>
-															<td><?= $r['cate_id'] ?></td>
-															<td><?= $r['pro_name'] ?></td>
-															<td> <img src="../images/<?= $r['pro_image'] ?>" width="120"></td>
-															<td><?= $r['price_start'] ?></td>
-															<td><?= $r['price'] ?></td>
-															<td><?= $r['intro'] ?></td>
-
-															<td><?= $r['quantity'] ?></td>
+															<td><?= $r['pro_id'] ?></td> <!-- hiển thị pro_id -->
+															<td><?= $r['cate_id'] ?></td><!-- hiển thị cate_id -->
+															<td><?= $r['pro_name'] ?></td><!-- hiển thị tên -->
+															<td> <img src="../images/<?= $r['pro_image'] ?>" width="120"></td><!-- hiển thị ảnh sản phẩm -->
+															<td><?= $r['price_start'] ?></td><!-- hiển thị giá bắt đầu -->
+															<td><?= $r['price'] ?></td><!-- hiển thị giá bán -->
+															<td><?= $r['intro'] ?></td><!-- hiển thị mã sản phẩm -->
+															<td><?= $r['quantity'] ?></td><!-- hiển thị mô tả sản phẩm -->
 															<td>
 																<button><a href="edit.php?id=<?= $r['pro_id'] ?>">Sửa</a></button>
 																<br>
 																<button><a onclick="return confirm('Ban có muốn xóa hay không ?')" href="del.php?id=<?= $r['pro_id'] ?>">Xóa</a></button>
-
 															</td>
 														</tr>
 													<?php } ?>
 												<?php endforeach; ?>
-
 											</tbody>
 										</table>
 									</div>
@@ -751,7 +738,7 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 							<div class="card-header" id="headingThree">
 								<h5 class="mb-0">
 									<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-										SPORTS <i class="fas fa-caret-down" style="color: gray; font-size:30px " ></i>
+										SPORTS <i class="fas fa-caret-down" style="color: gray; font-size:30px "></i>
 									</button>
 								</h5>
 							</div>
@@ -769,14 +756,15 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 													<th>Price</th>
 													<th>Quantity</th>
 													<th>Intro</th>
-
 													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php foreach ($result1 as $r) : ?>
+													<!--dùng vòng lặp để in ra các sản phẩm  -->
 
 													<?php if ($r['cate_id'] == 3) { ?>
+														<!--hiển thị các sản phẩm có id=3 -->
 														<tr>
 															<td><?= $r['pro_id'] ?></td>
 															<td><?= $r['cate_id'] ?></td>
@@ -785,18 +773,17 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 															<td><?= $r['price_start'] ?></td>
 															<td><?= $r['price'] ?></td>
 															<td><?= $r['intro'] ?></td>
-
 															<td><?= $r['quantity'] ?></td>
 															<td>
 																<button><a href="edit.php?id=<?= $r['pro_id'] ?>">Sửa</a></button>
 																<br>
 																<button><a onclick="return confirm('Ban có muốn xóa hay không ?')" href="del.php?id=<?= $r['pro_id'] ?>">Xóa</a></button>
-
 															</td>
 														</tr>
 													<?php } ?>
+													<!-- kết thúc if -->
 												<?php endforeach; ?>
-
+												<!-- kết thúc vòng lặp -->
 											</tbody>
 										</table>
 									</div>
@@ -806,9 +793,7 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 					</div>
 				</div>
 			</div>
-
 		</div>
-
 		<div class="row">
 			<div class="col-12 col-m-12 col-sm-12" id="add">
 				<div class="card">
@@ -832,40 +817,36 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 									</tr>
 									<tr>
 										<th>Pro_name</th>
-										<td><input type="text" placeholder="pro_name" name="pro_name"></td>
+										<td><input type="text" placeholder="pro_name" name="pro_name" class="product"></td><!-- nhập  ten  -->
 									</tr>
 									<tr>
 										<th>Pro_image</th>
-										<td><input type="file" name="pro_image" id=""></td>
+										<td><input type="file" name="pro_image" id="" class="product"></td><!-- chọn ảnh sp  -->
 									</tr>
 									<tr>
 										<th>price_start</th>
 
-										<td><input type="number" placeholder="price_start" name="price_start"></td>
+										<td><input type="number" placeholder="price_start" name="price_start" class="product"></td><!-- nhập giá sp ban đầu -->
 									</tr>
 									<tr>
 										<th>Price</th>
-
-										<td><input type="number" placeholder="price" name="price"></td>
+										<td><input type="number" placeholder="price" name="price" class="product"></td><!-- nhập bán sp -->
 									</tr>
-
 									<tr>
 										<th>Quantity</th>
 										<td>
-											<input type="number" placeholder="quantity" name="quantity"></td>
+											<input type="number" placeholder="quantity" name="quantity" class="product"></td><!-- nhập số lượng sp  -->
 									</tr>
 									<tr>
 										<th>Intro</th>
-										<td><textarea name="intro" placeholder="Intro" id="" cols="50" rows="4"></textarea></td>
+										<td><textarea name="intro" placeholder="Intro" id="" cols="50" rows="4" class="product"></textarea></td><!-- nhập mã sản phẩm  -->
 									</tr>
 									<tr>
 										<th>Detail</th>
-										<td><textarea id="detail2" name="detail" placeholder="Deltai" id="" cols="50" rows="15"></textarea></td>
+										<td><textarea id="detail2" name="detail" placeholder="Deltai" id="" cols="50" rows="15" class="product"></textarea></td><!-- nhập mô tả sp  -->
 									</tr>
-
 									<tr>
-										<button type="submit" name="btn">Save</button>
-
+										<button type="submit" name="btn" id="se" >Save</button><!-- nhấn save để giửi thông tin -->
 									</tr>
 								</form>
 							</thead>
@@ -874,7 +855,6 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 				</div>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-12 col-m-12 col-sm-12" id="add_dm">
 				<div class="card">
@@ -888,22 +868,21 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 						<table>
 							<thead>
 								<form action="add-list.php" method="post" enctype="multipart/form-data">
-
 									<tr>
 										<th>cate_name</th>
-										<td><input type="text" placeholder="cate_name" name="cate_name"></td>
+										<td><input type="text" placeholder="cate_name" name="cate_name" class="validate"></td><!-- nhập  ten danh mục -->
 									</tr>
 									<tr>
 										<th>cate_image</th>
-										<td><input type="file" name="cate_image"></td>
+										<td><input type="file" name="cate_image" class="validate"></td><!-- chọn ảnh  -->
 									</tr>
 									<tr>
 										<th>description</th>
-										<td><textarea type="text" placeholder="description" name="description" cols="50" rows="20"></textarea></td>
+										<td><textarea type="text" placeholder="description" name="description" cols="80" rows="10" class="validate"></textarea></td><!-- nhập mô tả   -->
 									</tr>
 
 									<tr>
-										<button type="submit" name="save">Save</button>
+										<button type="submit" name="save" id="save">Save</button><!-- nhấn save để giửi thông tin -->
 
 									</tr>
 								</form>
@@ -915,7 +894,32 @@ $count_dm = $stmt->fetch(PDO::FETCH_ASSOC);
 		</div>
 	</div>
 	<!-- end main content -->
+	<script>
+		var vld = document.getElementsByClassName("validate");
+		var dem = document.getElementsByClassName("product");
+		document.getElementById("save").onclick = function() {
+			for (var a = 0; a < vld.length; a++) {
 
+				if (vld[a].value == "") {
+					alert("điền đủ thông tin");
+					return false;
+				}
+			}
+
+
+		}
+		document.getElementById("").onclick = function() {
+			for (var a = 0; a < dem.length; a++) {
+
+				if (dem[a].value == "") {
+					alert("điền đủ thông tin sản phẩm");
+					return false;
+				}
+			}
+
+
+		}
+	</script>
 
 
 	<!-- import script -->

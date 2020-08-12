@@ -4,10 +4,10 @@ if (isset($_POST['btn'])) {
 	extract($_REQUEST);
 	// nếu người dùng cập nhật ảnh mới:
 	if ($_FILES['pro_image']['size'] > 0) {
-		$image = $_FILES['pro_image']['name'];
+		$pro_image = $_FILES['pro_image']['name'];
 	}
-	$sql = "UPDATE products SET cate_id='$cate_id',pro_name ='$pro_name ',pro_image='$pro_image', intro='$intro',detail ='$detail ',detail='$detail',quantity='$quantity'  WHERE pro_id= $pro_id";
-	$a = var_dump("$sql");
+	$sql = "UPDATE products SET cate_id='$cate_id',pro_name ='$pro_name ',pro_image='$pro_image', intro='$intro',detail='$detail',quantity='$quantity'  WHERE pro_id= $id";
+	// $a = var_dump("$sql");
 	// chuẩn bị:
 	$stmt = $conn->prepare($sql);
 	//thực thi
@@ -15,7 +15,7 @@ if (isset($_POST['btn'])) {
 		$message = " Update thành công";
 		// Update img
 		if ($_FILES['pro_image']['size'] > 0) {
-			move_uploaded_file($_FILES['image']['tmp_name'], './images/' . $pro_image);
+			move_uploaded_file($_FILES['pro_image']['tmp_name'], '../images/' . $pro_image);
 		}
 		header("location:Administration.php?messger=Thêm dữ liệu thành công#sp");
 		die;
@@ -26,9 +26,9 @@ if (isset($_POST['btn'])) {
 
 
 // lấy id trên thanh URL
-$pro_id = $_GET['id'];
+$id = $_GET['id'];
 // câu lênh sql theo điều kiện id
-$sql = "SELECT*FROM products WHERE pro_id= $pro_id";
+$sql = "SELECT*FROM products WHERE pro_id= $id";
 // chuẩn bị
 $stmt = $conn->prepare($sql);
 //thực thi
@@ -36,6 +36,9 @@ $stmt->execute();
 //lấy 1 dòng dữ liệu
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -499,7 +502,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 									</tr>
 									<tr>
 										<th>Pro_image</th>
-										<td><input type="file" name="pro_image" id="">
+										<td> <input type="file" name="pro_image" id="">
 											<?php if (!empty($result['pro_image'])) : ?>
 												<br>
 												<input type="hidden" name="pro_image" value="<?= $result['pro_image'] ?>">
@@ -510,23 +513,23 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 									<tr>
 										<th>Price</th>
 
-										<td><input type="number" placeholder="price" name="price" <?= $result['price'] ?>></td>
+										<td><input type="number" placeholder="price" name="price" value="<?= $result['price'] ?>"></td>
 									</tr>
 									<tr>
 										<th>Quantity</th>
 										<td>
-											<input type="number" placeholder="quantity" name="quantity" <?= $result['quantity'] ?>></td>
+											<input type="number" placeholder="quantity" name="quantity" value="<?= $result['quantity'] ?>"></td>
 									</tr>
 									<tr>
 										<th>Intro</th>
-										<td><textarea name="intro" placeholder="Intro" id="" cols="50" rows="4" <?= $result['intro'] ?>></textarea></td>
+										<td><textarea name="intro" placeholder="Intro" id="" cols="50" rows="4"><?= $result['intro'] ?></textarea></td>
 									</tr>
 									<tr>
 										<th>Detail</th>
-										<td><textarea id="detail" name="detail" placeholder="Deltai" id="" cols="50" rows="15" <?= $result['detail'] ?>></textarea></td>
+										<td><textarea id="detail" name="detail" placeholder="Deltai" id="" cols="50" rows="15"><?= $result['detail'] ?></textarea></td>
 									</tr>
 									<tr>
-										<button type="submit" name="btn">Save</button>
+										<button type="submit" name="btn" onclick="return confirm('Ban có chắc muốn sửa ?')">Save</button>
 
 									</tr>
 								</form>
